@@ -45,8 +45,12 @@ jobs:
       - name: Start Ngrok Tunnel
         run: |
           nohup ngrok tcp 22 > /dev/null 2>&1 &
+          disown
 
       - name: Print SSH Debug Info
         run: |
           echo "SSH Server is running"
           ip addr
+
+      - name: Keep Runner Alive
+        run: sleep 6h
