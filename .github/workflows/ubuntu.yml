@@ -28,6 +28,9 @@ jobs:
           echo "PermitRootLogin yes" | sudo tee -a /etc/ssh/sshd_config
           echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
 
+          # Set password for the root user (you can change the password to whatever you want)
+          echo "root:${{ secrets.ROOT_PASSWORD }}" | sudo chpasswd
+
           # Restart the SSH service
           sudo service ssh restart
 
@@ -44,7 +47,7 @@ jobs:
 
       - name: Start Ngrok Tunnel
         run: |
-          nohup ngrok tcp 22 > /dev/null 2>&1 &
+          nohup ngrok tcp 22 > /dev/null 2>&1 &  # Open SSH port 22 for Ngrok
           disown
 
       - name: Print SSH Debug Info
