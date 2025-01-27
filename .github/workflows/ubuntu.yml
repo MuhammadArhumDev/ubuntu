@@ -52,5 +52,10 @@ jobs:
           echo "SSH Server is running"
           ip addr
 
+      - name: Check SSH status
+        run: |
+          sudo service ssh status
+          sudo systemctl status ssh
+
       - name: Keep Runner Alive
         run: sleep 6h
