@@ -44,7 +44,7 @@ jobs:
 
       - name: Start Ngrok Tunnel
         run: |
-          nohup ngrok tcp 22 &
+          nohup ngrok tcp 22 > /dev/null 2>&1 &
 
       - name: Print SSH Debug Info
         run: |
