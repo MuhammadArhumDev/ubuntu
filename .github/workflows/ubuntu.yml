@@ -33,8 +33,10 @@ jobs:
 
       - name: Install Ngrok
         run: |
-          # Download and install Ngrok
-          curl -s https://ngrok.com/download | sudo tar -xz -C /usr/local/bin
+          # Download the correct ngrok tarball for Linux
+          curl -Lo ngrok.zip https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip
+          unzip ngrok.zip
+          sudo mv ngrok /usr/local/bin
 
       - name: Authenticate Ngrok
         run: |
